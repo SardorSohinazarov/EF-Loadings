@@ -1,12 +1,13 @@
-﻿using Microsoft.EntityFrameworkCore;
-using Web.API1.Configurations;
-using Web.API1.Entities;
+﻿using ConsoleApp2_with_Proxy.Configurations;
+using ConsoleApp2_with_Proxy.Entities;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 
-namespace Web.API1.Data
+namespace ConsoleApp2_with_Proxy.Data
 {
-    public class AppDbContext:DbContext
+    public class AppDbContext : DbContext
     {
-        public AppDbContext(DbContextOptions<AppDbContext> options):base(options) { }
+        public AppDbContext(DbContextOptions<AppDbContext> options) : base(options) { }
 
         public DbSet<Student> Students { get; set; }
         public DbSet<Teacher> Teachers { get; set; }
@@ -24,7 +25,11 @@ namespace Web.API1.Data
         {
             base.OnConfiguring(optionsBuilder);
 
-            optionsBuilder.LogTo(Console.WriteLine,LogLevel.Information);
+            optionsBuilder.UseLazyLoadingProxies();
+
+            optionsBuilder.UseSqlServer("Data Source=(localdb)\\MSSQLLocalDB;Initial Catalog=LazyLoadingWebApp1;");
+
+            optionsBuilder.LogTo(Console.WriteLine, LogLevel.Information);
         }
     }
 }

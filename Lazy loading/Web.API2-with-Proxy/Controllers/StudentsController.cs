@@ -1,9 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using Web.API1.Data;
-using Web.API1.Entities;
+using Web.API2_with_Proxy.Data;
+using Web.API2_with_Proxy.Entities;
 
-namespace Web.API1.Controllers
+namespace Web.API2_with_Proxy.Controllers
 {
     [Route("api/[controller]/[action]")]
     [ApiController]

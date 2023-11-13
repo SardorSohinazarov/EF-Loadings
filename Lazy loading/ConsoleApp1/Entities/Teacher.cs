@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore.Infrastructure;
 
-namespace Web.API1.Entities
+namespace ConsoleApp1.Entities
 {
     public class Teacher
     {
@@ -9,7 +9,7 @@ namespace Web.API1.Entities
 
         public Teacher()
         {
-            
+
         }
 
         private ILazyLoader _lazyLoader;
@@ -19,7 +19,8 @@ namespace Web.API1.Entities
         }
 
         private List<Student>? _students;
-        public List<Student>? Students {
+        public List<Student>? Students
+        {
             get => _lazyLoader.Load(this, ref _students);
             set => _students = value;
         }
